@@ -9,15 +9,18 @@ public class NPC : MonoBehaviour
     Transform t;
 
     public  GameObject eSign;
-    
+    public GameObject menu;
+    GameObject colChest;
+   
    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "npc" || other.gameObject.tag == "chest")
         {
-            canPressE = true;
+            
             t = other.gameObject.transform;
-            eSign.SetActive(canPressE);
+            e(true);
+            colChest = other.gameObject;
             
         }
     }
@@ -25,8 +28,7 @@ public class NPC : MonoBehaviour
     {
         if (other.gameObject.tag == "npc" || other.gameObject.tag == "chest")
         {
-            canPressE = false;
-            eSign.SetActive(canPressE);
+            e(false);
         }
     }
     private void Update()
@@ -34,7 +36,28 @@ public class NPC : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && canPressE)
         {
             Debug.Log("you talked to an npc at" + t.position);
+            menu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0;
 
         }
+    }
+    public void Check() {
+
+        //als antwoord goed is
+        menu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
+         GameObject child1 = colChest.transform.GetChild(1).gameObject;
+        colChest.transform.GetChild(2).gameObject.SetActive(false);
+        child1.transform.Rotate(0, 0, 140);
+        colChest.tag = "Untagged";
+        e(false);
+
+    }
+
+    public void e(bool e) {
+        canPressE = e;
+        eSign.SetActive(canPressE);
     }
 }
