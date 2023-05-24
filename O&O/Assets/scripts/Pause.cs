@@ -9,7 +9,8 @@ public class Pause : MonoBehaviour
     public GameObject pausescreen;
     bool esignwason = false;
     public GameObject eSign;
-    
+    public GameObject map;
+    bool mapwason = false;
      
     
     // Start is called before the first frame update
@@ -26,6 +27,14 @@ public class Pause : MonoBehaviour
             
             if (!paused)
             {
+                if (map.activeSelf)
+                {
+                    mapwason = true;
+                    map.SetActive(false);
+                }
+                else {
+                    mapwason = false;
+                }
                 if (eSign.activeSelf) {
                     esignwason = true;
                     setOn();
@@ -34,9 +43,11 @@ public class Pause : MonoBehaviour
                 Time.timeScale = 0;
                 paused= true;
                 pausescreen.SetActive(paused);
+                
             }
             else {
                 if (esignwason) { setOn(); }
+                if (mapwason) { map.SetActive(true); };
                
                 Cursor.lockState = CursorLockMode.Locked;
                 Time.timeScale = 1;
@@ -48,6 +59,7 @@ public class Pause : MonoBehaviour
     void setOn() {
             
            eSign.SetActive(paused);
+            
         
     }
 }
