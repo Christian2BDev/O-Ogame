@@ -19,10 +19,10 @@ public class Inventory : MonoBehaviour
         PlayerPrefs.SetInt("Necklase", 1);
         PlayerPrefs.SetInt("Ring", 1);
         PlayerPrefs.SetInt("Cape", 1);
-        if (PlayerPrefs.GetInt("Had") == 1) { EnabledIcons("Had", true); }
-        if (PlayerPrefs.GetInt("Necklase") == 1) { EnabledIcons("Necklase", true); }
-        if (PlayerPrefs.GetInt("Ring") == 1) { EnabledIcons("Ring", true); }
-        if (PlayerPrefs.GetInt("Cape") == 1) { EnabledIcons("Cape", true); }
+        if (PlayerPrefs.GetInt("HadEnabled") == 1) { EnabledIcons("Had", true); }
+        if (PlayerPrefs.GetInt("NecklaseEnabled") == 1) { EnabledIcons("Necklase", true); }
+        if (PlayerPrefs.GetInt("RingEnabled") == 1) { EnabledIcons("Ring", true); }
+        if (PlayerPrefs.GetInt("CapeEnabled") == 1) { EnabledIcons("Cape", true); }
 
 
     }
@@ -44,17 +44,17 @@ public class Inventory : MonoBehaviour
     public void inventoryEnable(string sort) {
         if (PlayerPrefs.GetInt(sort) == 1)
         {
-            if (PlayerPrefs.GetInt(sort + "Enabled") == 1) {
-                PlayerPrefs.SetInt(sort + "Enabled", 0);
-                //disabling
-                EnabledIcons(sort, false);
-            }
-            else
-            {
+            if (PlayerPrefs.GetInt(sort + "Enabled") ==0) {
                 PlayerPrefs.SetInt(sort + "Enabled", 1);
-                Debug.Log(sort + " is enabled");
                 //enabling
                 EnabledIcons(sort, true);
+            }
+            else if (PlayerPrefs.GetInt(sort + "Enabled") == 1)
+            {
+                PlayerPrefs.SetInt(sort + "Enabled", 0);
+                Debug.Log(sort + " is Disabled");
+                //disabling
+                EnabledIcons(sort, false);
             }
             
         }
