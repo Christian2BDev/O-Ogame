@@ -6,6 +6,7 @@ TagManager:
   tags:
   - npc
   - chest
+  - Artifact
   layers:
   - Default
   - TransparentFX

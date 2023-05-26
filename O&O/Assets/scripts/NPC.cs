@@ -33,7 +33,7 @@ public class NPC : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && canPressE)
+        if (Input.GetKeyDown(KeyCode.F) && canPressE)
         {
             Debug.Log("you talked to an npc at" + t.position);
             menu.SetActive(true);

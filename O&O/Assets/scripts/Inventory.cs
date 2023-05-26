@@ -15,10 +15,7 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("Had", 1);
-        PlayerPrefs.SetInt("Necklase", 1);
-        PlayerPrefs.SetInt("Ring", 1);
-        PlayerPrefs.SetInt("Cape", 1);
+        PlayerPrefs.DeleteAll();
         if (PlayerPrefs.GetInt("HadEnabled") == 1) { EnabledIcons("Had", true); }
         if (PlayerPrefs.GetInt("NecklaseEnabled") == 1) { EnabledIcons("Necklase", true); }
         if (PlayerPrefs.GetInt("RingEnabled") == 1) { EnabledIcons("Ring", true); }
