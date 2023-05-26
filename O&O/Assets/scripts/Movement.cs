@@ -11,6 +11,11 @@ public class Movement : MonoBehaviour
     public float camSpeed = 10;
     public float camYSpeed = 3;
     public float jumpHeight = 10;
+    public static float modi = 1;
+    public static float modij = 1;
+    public static int jumpmodi = 1;
+    public float modifier;
+    public int jumps = 1;
     public GameObject cam;
     public GameObject floor;
     public bool is_grounded = false;
@@ -24,11 +29,16 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && is_grounded)
+        modifier = modi;
+        //if (Input.GetKeyDown(KeyCode.Space) && is_grounded)
+        //{
+        //    PlayerRigidbody.velocity += (jumpHeight* modij) * Time.timeScale * transform.up;
+        //}
+        if (Input.GetKeyDown(KeyCode.Space) && jumps >= 1)
         {
-            PlayerRigidbody.velocity += jumpHeight * Time.timeScale * transform.up;
+            jumps--;
+            PlayerRigidbody.velocity += (jumpHeight * modij) * Time.timeScale * transform.up;
         }
-
         if (Input.GetKey(KeyCode.LeftShift))
         {
             speed = 2;
@@ -36,6 +46,7 @@ public class Movement : MonoBehaviour
         else {
             speed = 1;
         }
+
 
         Vector3 moveDirection = Vector3.zero;
         
@@ -58,7 +69,7 @@ public class Movement : MonoBehaviour
             }
             moveDirection.Normalize();
         
-        PlayerRigidbody.velocity += moveDirection * speed * Time.timeScale;
+        PlayerRigidbody.velocity += moveDirection * (speed* modi) * Time.timeScale;
 
 
 
@@ -76,14 +87,17 @@ public class Movement : MonoBehaviour
     {
         if (other.gameObject == floor)
         {
+            jumps = 1 * jumpmodi;
+            
             is_grounded = true;
         }
     }
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject == floor)
-        {
-            is_grounded = false;
-        }
-    }
+    //private void OnCollisionExit(Collision other)
+    //{
+    //    if (other.gameObject == floor)
+    //    {
+            
+    //        is_grounded = false;
+    //    }
+    //}
 }

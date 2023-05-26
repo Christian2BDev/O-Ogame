@@ -20,9 +20,9 @@ public class Atifacs : MonoBehaviour
     void Update()
     {
         if (PlayerPrefs.GetInt("HadEnabled") == 1) { /*change hints boolean*/ hint.text = "ja"; } else { hint.text = "nee"; }
-        if (PlayerPrefs.GetInt("NecklaseEnabled") == 1) { /*change jump modifier*/ jump.text = "1.5x"; } else { jump.text = "1x"; }
-        if (PlayerPrefs.GetInt("RingEnabled") == 1) { /*change Speed modifier*/ speed.text = "2x"; } else { speed.text = "1x"; }
-        if (PlayerPrefs.GetInt("CapeEnabled") == 1) { /*change duble jump boolean*/ djump.text = "ja"; } else { djump.text = "nee"; }
+        if (PlayerPrefs.GetInt("NecklaseEnabled") == 1) { /*change jump modifier*/ jump.text = "2x"; Movement.modij = 2; } else { jump.text = "1x"; Movement.modij = 1; }
+        if (PlayerPrefs.GetInt("RingEnabled") == 1) { /*change Speed modifier*/ speed.text = "2x"; Movement.modi = 2; } else { speed.text = "1x"; Movement.modi = 1; }
+        if (PlayerPrefs.GetInt("CapeEnabled") == 1) { /*change duble jump boolean*/ djump.text = "ja"; Movement.jumpmodi = 2; } else { djump.text = "nee"; Movement.jumpmodi = 1; }
         
     }
 

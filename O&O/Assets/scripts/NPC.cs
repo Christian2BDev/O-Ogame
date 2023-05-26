@@ -15,7 +15,7 @@ public class NPC : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "npc" || other.gameObject.tag == "chest")
+        if ( other.gameObject.tag == "chest")
         {
             
             t = other.gameObject.transform;
@@ -26,7 +26,7 @@ public class NPC : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "npc" || other.gameObject.tag == "chest")
+        if (other.gameObject.tag == "chest")
         {
             e(false);
         }
