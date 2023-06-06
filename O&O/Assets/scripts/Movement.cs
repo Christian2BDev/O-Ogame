@@ -7,10 +7,10 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     Rigidbody PlayerRigidbody;
     CapsuleCollider col;
-    public float speed = 1;
+    public double speed = 1;
     public float camSpeed = 10;
     public float camYSpeed = 3;
-    public float jumpHeight = 10;
+    public double jumpHeight = 1;
     public static float modi = 1;
     public static float modij = 1;
     public static int jumpmodi = 1;
@@ -37,14 +37,14 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && jumps >= 1)
         {
             jumps--;
-            PlayerRigidbody.velocity += (jumpHeight * modij) * Time.timeScale * transform.up;
+            PlayerRigidbody.velocity += ((float)jumpHeight * modij) * Time.timeScale * transform.up;
         }
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            speed = 2;
+            speed = 0.6;
         }
         else {
-            speed = 1;
+            speed = 0.3;
         }
 
 
@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour
             }
             moveDirection.Normalize();
         
-        PlayerRigidbody.velocity += moveDirection * (speed* modi) * Time.timeScale;
+        PlayerRigidbody.velocity += moveDirection * ((float)speed* modi) * Time.timeScale;
 
 
 
