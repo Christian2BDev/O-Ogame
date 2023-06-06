@@ -1939,7 +1939,7 @@ MonoBehaviour:
   speed: 0.3
   camSpeed: 10
   camYSpeed: 3
-  jumpHeight: 6.6666
+  jumpHeight: 10
   modifier: 0
   jumps: 1
   cam: {fileID: 901188801}
