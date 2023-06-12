@@ -53,6 +53,7 @@ public class NPC : MonoBehaviour
         child1.transform.Rotate(0, 0, 140);
         colChest.tag = "Untagged";
         e(false);
+        colChest.transform.GetChild(3).gameObject.SetActive(false);
 
     }
 

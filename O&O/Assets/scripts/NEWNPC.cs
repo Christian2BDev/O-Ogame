@@ -19,7 +19,14 @@ public class NEWNPC : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && canPressE)
         {
-            telling(colChest.transform.GetChild(0).gameObject.name);
+            if (int.Parse(colChest.transform.GetChild(1).gameObject.name) == PlayerPrefs.GetInt("stage"))
+            {
+                telling(colChest.transform.GetChild(0).gameObject.name);
+            }
+            else {
+                Debug.Log("cant talk to you");
+            }
+           
 
         }
     }
@@ -57,6 +64,7 @@ public class NEWNPC : MonoBehaviour
     }
 
     public void close() {
+        PlayerPrefs.SetInt("stage", PlayerPrefs.GetInt("stage") + 1);
         menu.SetActive(false);
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
