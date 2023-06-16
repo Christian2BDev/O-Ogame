@@ -8,6 +8,7 @@ TagManager:
   - chest
   - Artifact
   - sea
+  - floor
   layers:
   - Default
   - TransparentFX

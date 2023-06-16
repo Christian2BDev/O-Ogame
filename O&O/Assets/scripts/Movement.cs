@@ -85,7 +85,7 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject == floor)
+        if (other.gameObject.tag == "floor")
         {
             jumps = 1 * jumpmodi;
             

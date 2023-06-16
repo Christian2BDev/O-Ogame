@@ -12,7 +12,7 @@ public class NEWNPC : MonoBehaviour
     public GameObject eSign;
     public GameObject menu;
     public TMP_Text location;
-  
+    public GameObject text;
 
  
     void Update()
@@ -24,7 +24,8 @@ public class NEWNPC : MonoBehaviour
                 telling(colChest.transform.GetChild(0).gameObject.name);
             }
             else {
-                Debug.Log("cant talk to you");
+                text.SetActive(true);
+                StartCoroutine(cant(5));
             }
            
 
@@ -70,4 +71,17 @@ public class NEWNPC : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
     }
+
+    IEnumerator cant(int secs)
+    {
+        yield return new WaitForSeconds(secs);
+        text.SetActive(false);
+    }
+
+
 }
+    
+
+    
+
+
