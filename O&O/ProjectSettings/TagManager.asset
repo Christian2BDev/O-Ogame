@@ -9,6 +9,7 @@ TagManager:
   - Artifact
   - sea
   - floor
+  - endchest
   layers:
   - Default
   - TransparentFX
