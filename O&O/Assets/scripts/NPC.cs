@@ -14,6 +14,8 @@ public class NPC : MonoBehaviour
     public GameObject menu;
     GameObject colChest;
     public TMP_Text som;
+    public TMP_Text fout;
+    public TMP_Text foundallkeys;
     public int getal1;
     public int getal2;
     public int modifier;
@@ -43,7 +45,8 @@ public class NPC : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && canPressE)
         {
-            Debug.Log("you talked to an npc at" + t.position);
+            
+            genNumb();
             if (modifier == 1) { som.text = (getal1 +" + "+getal2).ToString(); }
             if (modifier == 2) { som.text = (getal1 +" - "+ getal2).ToString(); }
             menu.SetActive(true);
@@ -53,12 +56,16 @@ public class NPC : MonoBehaviour
         }
     }
     public void Check() {
-        if (modifier == 1) { if (answer.text.Equals((getal1 + getal2))) { dis(); } }
-        else if (modifier == 2) { if (answer.text.Equals((getal1 - getal2))) { dis(); } }
-        else { Debug.Log("wrong"); }
+        string ans = (getal1+ getal2).ToString();
+        string ansN = (getal1 - getal2).ToString();
+        if (modifier == 1) { if (answer.text.Equals(ans)) { dis(); } else { fout.text = "Dat is fout! probeer het opnieuw!"; } }
+        else if (modifier == 2) { if (answer.text.Equals(ansN)) { dis(); } else { fout.text = "Dat is fout! probeer het opnieuw!"; } }
+        
 
     }
     public void dis() {
+        answer.text = "";
+        fout.text = "";
         menu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
@@ -68,10 +75,32 @@ public class NPC : MonoBehaviour
         colChest.tag = "Untagged";
         e(false);
         colChest.transform.GetChild(3).gameObject.SetActive(false);
+        if (colChest.transform.GetChild(4).gameObject.name == "yes") { PlayerPrefs.SetInt("keys", PlayerPrefs.GetInt("keys") + 1); /*give key*/ }
+        if (PlayerPrefs.GetInt("keys") == 10) { foundallkeys.text = "je hebt alle sleutels gevonden! ga naar de boom van leven"; StartCoroutine(sleep(5)); }
     }
 
     public void e(bool e) {
         canPressE = e;
         eSign.SetActive(canPressE);
     }
+
+    void genNumb() {
+        getal1 = Random.Range(0, 20);
+        getal2 = Random.Range(0, 20);
+        modifier = Random.Range(1, 3);
+        while (getal1-getal2 <= 0) {
+            getal1 = Random.Range(0, 20);
+            getal2 = Random.Range(0, 20);
+        }
+    }
+
+   
+
+        
+
+IEnumerator sleep(int secs)
+{
+    yield return new WaitForSeconds(secs);
+        foundallkeys.text = "";
+}
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -10,6 +11,7 @@ public class Inventory : MonoBehaviour
     public GameObject Necklase;
     public GameObject Ring;
     public GameObject Cape;
+    public TMP_Text keys;
 
 
     // Start is called before the first frame update
@@ -30,6 +32,7 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) {
             on = !on;
             inv.SetActive(on);
+            if (PlayerPrefs.HasKey("keys")) { keys.text = PlayerPrefs.GetInt("keys").ToString(); }
             if (on) { Cursor.lockState = CursorLockMode.None; Time.timeScale = 0; }
             if (!on) { Cursor.lockState = CursorLockMode.Locked; Time.timeScale = 1; }
 
