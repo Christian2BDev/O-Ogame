@@ -7,6 +7,7 @@ public class home : MonoBehaviour
 {
     public void Start()
     {
+        PlayerPrefs.DeleteAll();
         Time.timeScale = 1;
     }
     public void stoppen() {
